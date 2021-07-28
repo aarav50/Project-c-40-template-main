@@ -36,18 +36,25 @@ class Game{
         }
     
     play(){
-        
+        fill("#00ffff")
+    
                 form.hide();
 
                 Player.getPlayerInfo();
                 
                  image(back_img, 0, 0, 1000, 800);
                  var x =100;
-                 var y=200;
+                 var y
+                 var p=200
+                 var pp=200
                  var index =0;
                  drawSprites();
                  for(var plr in allPlayers){
+                    textSize(40);
+                    console.log(allPlayers[plr].name)
                     
+                    text(allPlayers[plr].name+":"+allPlayers[plr].score,p,pp)
+                    p=p+300
                     
                      index = index+1;
                      x = 500-allPlayers[plr].distance;
@@ -55,11 +62,10 @@ class Game{
                      
                      players[index -1].x = x;
                      players[index - 1].y = y;
-                       
+                    
                      if(index === player.index){
-                        textSize(40);
+                       
                         text(allPlayers[plr].name,x-30,y+25)
-
                          
                      }
                     
@@ -103,8 +109,10 @@ class Game{
                     for (var i = 0; i < fruitGroup.length; i++) {
                         if (fruitGroup.get(i).isTouching(players)) {
                             fruitGroup.get(i).destroy();
-                         
-                            
+                            player.score= player.score+1
+                    player.update()
+                    
+
                         }
                         
                     }
